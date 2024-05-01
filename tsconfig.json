@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/config/DashboardLeftMenu.js", "src/components/dashboard/DashboardLeftMenu.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/config/DashboardLeftMenu.js", "src/components/dashboard/DashboardLeftMenu.tsx", "src/config/menuItems.ts"],
   "exclude": ["node_modules"]
 }
