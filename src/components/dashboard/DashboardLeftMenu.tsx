@@ -1,7 +1,27 @@
 'use client';
 import React from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu, MenuProps } from 'antd';
+import {
+  AppstoreOutlined,
+  ContainerOutlined,
+  DesktopOutlined,
+  MailOutlined,
+  MenuOutlined,
+  PieChartOutlined,
+  UploadOutlined,
+  FileAddOutlined,
+  UnorderedListOutlined,
+  SnippetsOutlined,
+  MessageOutlined,
+  MenuFoldOutlined,
+  SkinOutlined,
+  UserOutlined,
+  ToolOutlined,
+  SettingOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons';
+
+import  { useState } from 'react';
+import { Button, Menu, MenuProps } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -17,43 +37,44 @@ type MenuItem = {
 
 const items: MenuItem[] = [
   {
-    key: 'sub1',
-    label: 'Navigation One',
-    icon: <MailOutlined />,
+    key: 'dashboard',
+    label: 'Dashboard',
+    icon: <PieChartOutlined />,
+  },
+
+  {
+    key: 'Posts',
+    label: 'Posts',
+    icon: <FileAddOutlined />,
     children: [
+      { key: 'create-post', label: 'Create Post', icon: <MenuOutlined /> },
+      { key: 'create-news', label: 'Create News', icon: <MenuOutlined /> },
+      { key: 'posts', label: 'All Posts', icon: <UnorderedListOutlined /> },
       {
-        key: 'g1',
-        label: 'Item 1',
-        type: 'group',
+        key: 'blog-menu',
+        label: 'Blog Menu',
         children: [
-          { key: '1', label: 'Option 1' },
-          { key: '2', label: 'Option 2' },
-        ],
-      },
-      {
-        key: 'g2',
-        label: 'Item 2',
-        type: 'group',
-        children: [
-          { key: '3', label: 'Option 3' },
-          { key: '4', label: 'Option 4' },
+          { key: 'create-blog', label: 'Create Blog' },
+          { key: 'comments', label: 'Comments' },
         ],
       },
     ],
   },
-  {
-    key: 'sub2',
-    label: 'Navigation Two',
-    icon: <AppstoreOutlined />,
+    {
+    key: 'media',
+    label: 'Media',
+    icon: <UploadOutlined />,
     children: [
-      { key: '5', label: 'Option 5' },
-      { key: '6', label: 'Option 6' },
+      { key: 'upload-image', label: 'Upload Image' },
+      { key: 'upload-video', label: 'Upload Video' },
+      { key: 'library', label: 'Library' },
       {
-        key: 'sub3',
-        label: 'Submenu',
+        key: 'all-media',
+        label: 'show all media',
+        icon: <AppstoreOutlined />,
         children: [
-          { key: '7', label: 'Option 7' },
-          { key: '8', label: 'Option 8' },
+          { key: 'images', label: 'Images' },
+          { key: 'videos', label: 'Videos' },
         ],
       },
     ],
@@ -63,30 +84,46 @@ const items: MenuItem[] = [
     key: '',
     label: ''
   },
+   {
+    key: 'appearance',
+    icon: <SkinOutlined />,
+    label: 'Appearance',
+    children: [
+      { key: 'themes', label: 'Themes', icon: <AppstoreOutlined /> },
+    ],
+  },
   {
-    key: 'sub4',
-    label: 'Navigation Three',
+    key: 'users',
+    label: 'Users',
+    type: 'group',
+    icon: <UserOutlined />,
+    children: [
+      { key: 'admin', label: 'Admin' },
+      { key: 'authors', label: 'Authors' },
+    ],
+  },
+  { key: 'tools', icon: <ToolOutlined />, label: 'Tools' },
+  {
+    key: 'Settings',
+    label: 'Settings',
     icon: <SettingOutlined />,
     children: [
-      { key: '9', label: 'Option 9' },
-      { key: '10', label: 'Option 10' },
-      { key: '11', label: 'Option 11' },
-      { key: '12', label: 'Option 12' },
+      { key: 'general', label: 'General' },
+      { key: 'profile', label: 'Profile' },
+      { key: 'account', label: ' Account' },
+      { key: 'security', label: 'Security' },
     ],
   },
-  {
-    key: 'grp',
-    label: 'Group',
-    type: 'group',
-    children: [
-      { key: '13', label: 'Option 13' },
-      { key: '14', label: 'Option 14' },
-    ],
-  },
+  
 ];
 
 const App: React.FC = () => {
   const router = useRouter();
+  const [collapsed, setCollapsed] = useState(false);
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  }
 
   const onClick: MenuProps['onClick'] = (e) => {
     if (e.key) {
@@ -98,7 +135,7 @@ const App: React.FC = () => {
     return items.map((item) => {
       if (item.children) {
         return (
-          <SubMenu key={item.key} icon={item.icon} title={item.label}>
+          <SubMenu  key={item.key} icon={item.icon} title={item.label}>
             {renderMenuItems(item.children)}
           </SubMenu>
         );
@@ -106,11 +143,21 @@ const App: React.FC = () => {
         return <Menu.Divider key={item.key} />;
       } else {
         return (
-          <Menu.Item key={item.key} icon={item.icon}>
+
+          <div className='' style={{ height: '100%' }} key={item.key}>
+
+             <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+      </Button>
+              <Menu.Item className='h-screen' key={item.key} icon={item.icon}>
             <Link href={item.key}>
               {item.label}
             </Link>
           </Menu.Item>
+          </div>
+      
+             
+     
         );
       }
     });

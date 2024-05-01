@@ -1,8 +1,11 @@
+import DashboardMenu from '@/components/dashboard/DashboardMenu'
 import React from 'react'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <DashboardMenu />
+    </div>
   )
 }
 
