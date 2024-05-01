@@ -1,13 +1,11 @@
 import React from 'react'
-
-import DashboardLeftMenu from '@/components/dashboard/DashboardLeftMenu'
+import Dashboard from '@/components/dashboard/Dashboard'
 
 
 const  DashboardPage: React.FC = () => {
   return (
       <div>
-
-        <DashboardLeftMenu />
+        <Dashboard />
     </div>
   )
 }

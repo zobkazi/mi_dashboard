@@ -146,9 +146,7 @@ const App: React.FC = () => {
 
           <div className='' style={{ height: '100%' }} key={item.key}>
 
-             <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
+             
               <Menu.Item className='h-screen' key={item.key} icon={item.icon}>
             <Link href={item.key}>
               {item.label}

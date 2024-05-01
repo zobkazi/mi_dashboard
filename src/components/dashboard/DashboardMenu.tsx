@@ -73,10 +73,9 @@ const DashboardMenu: React.FC = () => {
     <div className='h-screen'>
 
       <Menu
-        className='h-screen'
+        className='h-screen flex flex-col min-w-0'
         onAuxClick={toggleCollapsed}
       onClick={onClick}
-        style={{ width: 256 }}
         defaultSelectedKeys={['dashboard']}
         defaultOpenKeys={['posts']}
         mode="inline"
