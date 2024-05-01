@@ -11,7 +11,7 @@ const LoginForm = () => {
     setLoading(true);
     // Mock authentication
     setTimeout(() => {
-      if (values.email === 'admin@example.com' && values.password === 'password') {
+      if (values.email === 'admin@admin.com' && values.password === 'admin') {
         message.success('Login successful');
         // Simulate saving data to database
         saveToDatabase(values);

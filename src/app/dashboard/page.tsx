@@ -1,13 +1,13 @@
 import React from 'react'
-import { Button } from 'antd'
+
 import DashboardLeftMenu from '@/components/dashboard/DashboardLeftMenu'
 
 
-function DashboardPage() {
+const  DashboardPage: React.FC = () => {
   return (
       <div>
 
-      <DashboardLeftMenu onItemClick={undefined} />
+        <DashboardLeftMenu />
     </div>
   )
 }
