@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button } from 'antd'
+import DashboardLeftMenu from '@/components/dashboard/DashboardLeftMenu'
 
 
 function DashboardPage() {
   return (
       <div>
-          <Button className='' type="primary">Primary Button</Button>
-          
-          <Button type="link">Link Button</Button>
+
+      <DashboardLeftMenu onItemClick={undefined} />
     </div>
   )
 }
