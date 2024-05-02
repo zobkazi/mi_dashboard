@@ -1,9 +1,13 @@
 'use client';
 import { useState } from 'react';
 import { Form, Input, Button, Card, message, Row, Col } from 'antd';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 
 
 const LoginForm = () => {
+ const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [form] = Form.useForm(); // Create a form reference
 
@@ -11,11 +15,12 @@ const LoginForm = () => {
     setLoading(true);
     // Mock authentication
     setTimeout(() => {
-      if (values.email === 'admin@admin.com' && values.password === 'admin') {
+      if (values.email === 'admin@admin.com' && values.password === 'admin123') {
         message.success('Login successful');
         // Simulate saving data to database
         saveToDatabase(values);
         form.resetFields();
+        router.push('/dashboard');
       } else {
         message.error('Invalid email or password');
       }
@@ -64,7 +69,10 @@ const LoginForm = () => {
             </Form.Item>
           </Form>
           <div className="text-center">
-            <a href="#">Forgot password?</a> | <a href="#">Register</a>
+  
+            <Link href="/auth/forgot-password" className="text-blue-500">
+              &nbsp;Forgot Password
+            </Link>
           </div>
         </Card>
       </Col>
