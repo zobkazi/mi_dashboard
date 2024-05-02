@@ -20,6 +20,10 @@ const ForgotPasswordForm: React.FC = () => {
         setError('Invalid email address');
         return;
       }
+      if (!email) {
+        setError('Please enter your email');
+        return;
+      }
 
       // // Send POST request to backend API
       // const response = await axios.post('/api/forgotpassword', { email });
@@ -27,7 +31,7 @@ const ForgotPasswordForm: React.FC = () => {
 
       console.log('Email sent successfully', email);
     
-      setMessage('Email sent successfully');
+      setMessage('check your email, and click on the link to reset your password');
       setEmail('');
     } catch (error) {
       setError('An error occurred. Please try again later.');
@@ -42,7 +46,7 @@ const ForgotPasswordForm: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-full">
+    <div className="flex mt-10 items-center justify-center h-full">
       <form onSubmit={handleSubmit} className="space-y-6">
         <h1 className="text-3xl font-bold text-center mb-4">Forgot Password</h1>
         <div className="flex flex-col items-center">
@@ -50,27 +54,14 @@ const ForgotPasswordForm: React.FC = () => {
             id="email"
             name="email"
             type="email"
-            autoComplete="email"
             required
+            autoComplete="email"
             value={email}
             onChange={handleEmailChange}
             className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             placeholder="Enter your email address"
           />
-          <button type="submit" className="mt-2 px-3 py-2 bg-indigo-600 text-white rounded-md">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6 6a4 4 0 016.47-3.12l5.5-2.75a.5.5 0 01.65.49v13.56a.5.5 0 01-.65.49l-5.5-2.75A4 4 0 016 6zm4 2a2 2 0 100-4 2 2 0 000 4z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
+
         </div>
         {error && <p className="text-red-500">{error}</p>}
         {message && <p className="text-green-500">{message}</p>}

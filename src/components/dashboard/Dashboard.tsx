@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import DashboardMenu from './DashboardMenu';
+import TopHeader from '../pageHeader/TopHeader';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -25,7 +26,7 @@ const App: React.FC = () => {
         <DashboardMenu  />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
+       <TopHeader />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
